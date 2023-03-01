@@ -2,6 +2,7 @@ package org.example.Seminar_1.HW01;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
@@ -22,10 +23,26 @@ public class Main {
 
         // let the customer buy the item
         HotDrink product = vendingMachine.getProduct("Coffee", 12, 70);
-        if (product != null) {
-            System.out.println("Enjoy your " + product.getName());
+        HotDrink customerDrink = selectDrinkFromConsole(vendingMachine);
+        if (customerDrink != null) {
+            System.out.println("Enjoy your " + customerDrink.getName() + "!");
         } else {
             System.out.println("Sorry, product not found.");
         }
     }
+    // method to select a drink from the console
+    public static HotDrink selectDrinkFromConsole(HotDrinkVendingMachine vendingMachine) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter drink name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter drink volume: ");
+        int volume = scanner.nextInt();
+        System.out.print("Enter drink temperature: ");
+        int temperature = scanner.nextInt();
+        return vendingMachine.getProduct(name, volume, temperature);
+    }
+
+
+
+
 }
